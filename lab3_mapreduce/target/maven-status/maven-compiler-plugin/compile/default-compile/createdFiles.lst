@@ -1,0 +1,5 @@
+edu\supmti\hadoop\mapreduce\IntSumReducer.class
+edu\supmti\hadoop\mapreduce\Main.class
+edu\supmti\hadoop\HadoopFileStatus.class
+edu\supmti\hadoop\mapreduce\WordCount.class
+edu\supmti\hadoop\mapreduce\TokenizerMapper.class
