@@ -1,0 +1,36 @@
+version: '3.7'
+services:
+  hadoop-namenode:
+    image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-master
+    ports:
+      - "9870:9870" # NameNode UI
+      - "8088:8088" # YARN ResourceManager
+    environment:
+      - CLUSTER_NAME=hadoop-cluster
+    volumes:
+      - namenode:/hadoop/dfs/name
+
+  hadoop-datanode1:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-slave1
+    depends_on:
+      - hadoop-namenode
+    volumes:
+      - datanode1:/hadoop/dfs/data
+
+  hadoop-datanode2:
+    image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
+    container_name: hadoop-slave2
+    depends_on:
+      - hadoop-namenode
+    volumes:
+      - datanode2:/hadoop/dfs/data
+
+volumes:
+  namenode:
+  datanode1:
+  datanode2:
+
+# NOTE: This is a minimal example template. Depending on your lab environment, you may need
+# extra env vars, network configuration, or init scripts. See the README_TP.md for details.
